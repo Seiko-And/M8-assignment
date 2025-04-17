@@ -8,24 +8,24 @@ let employees = [
 ];
 
 // CHECK TO SEE IF STORAGE OBJECT EXISTS WHEN THE PAGE LOADS
-window.addEventListener('DOMContentLoaded', ()=>{
+function storageCheck(){
   // IF DOES, RETURN STORAGE OBJECT INTO ARRAY INSTEAD OF POPULATED ARRAY
   if (localStorage.getItem('employees')){
     employees = JSON.parse(localStorage.getItem('employees'));
   }  
-});
+  buildGrid();
+};
 
 // GET DOM ELEMENTS
 const $ = selecter => document.querySelector(selecter);
 const form = $('#addForm');
 const empTable = $('#empTable');
 const tbody = document.getElementsByTagName('TBODY')[0];
-const header = $('#main-header');
-const output = document.createElement('output');
+const output = $('#empCount');
 
 
 // BUILD THE EMPLOYEES TABLE WHEN THE PAGE LOADS
-window.addEventListener('DOMContentLoaded', buildGrid());
+window.addEventListener('DOMContentLoaded',storageCheck);
 
 // ADD EMPLOYEE
 form.addEventListener('submit', (e) => {
@@ -90,7 +90,6 @@ function buildGrid() {
     }
     // UPDATE EMPLOYEE COUNT
     output.textContent =`${employees.length} employees`;
-    header.appendChild(output);
     // STORE THE ARRAY IN STORAGE
     localStorage.setItem('employees', JSON.stringify(employees));
 };
