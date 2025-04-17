@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
 // GET DOM ELEMENTS
 const $ = selecter => document.querySelector(selecter);
 const form = $('#addForm');
-const table = $('#empTable');
+const empTable = $('#empTable');
 const tbody = document.getElementsByTagName('TBODY')[0];
 const header = $('#main-header');
 const output = document.createElement('output');
